@@ -1,0 +1,7 @@
+# Copia a local.properties (ya está en .gitignore). No commitear claves reales.
+sdk.dir=C\:\\Users\\YourUser\\AppData\\Local\\Android\\Sdk
+
+# Supabase — Settings → API (usar solo la clave anon public)
+# URL base del proyecto (sin /rest/v1). La app normaliza si se incluye por error.
+supabase.url=https://YOUR_PROJECT_REF.supabase.co
+supabase.anon.key=YOUR_ANON_KEY

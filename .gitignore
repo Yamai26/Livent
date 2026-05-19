@@ -1,0 +1,63 @@
+# --- Android / Gradle (build & cachés; no subir) ---
+*.iml
+.gradle/
+build/
+**/build/
+captures/
+.externalNativeBuild/
+.cxx/
+.kotlin/
+
+# APK / AAB / bundles
+*.apk
+*.apk.*
+*.aab
+*.ap_
+*.dex
+
+# --- Secretos y configuración local ---
+local.properties
+*.jks
+*.keystore
+google-services.json
+secrets.properties
+.env
+.env.*
+
+# --- IDE (Android Studio / IntelliJ) ---
+.idea/
+!.idea/codeStyles/
+!.idea/runConfigurations.xml
+*.ipr
+*.iws
+out/
+
+# --- Cursor / agentes / notas internas de desarrollo ---
+.cursor/
+task.md
+**/agent-transcripts/
+**/*handoff*.md
+**/*HANDOFF*.md
+
+# --- Sistema operativo ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Logs y diagnósticos ---
+*.log
+*.hprof
+*.orig
+
+# --- Supabase CLI (si se usa en local) ---
+.supabase/
+
+# --- Mockups y assets pesados (opcional: quitar esta línea si quieres versionar diseño) ---
+# Descomenta si guardas JPG grandes en el repo y prefieres Git LFS o enlaces externos:
+# docs/design/*.jpg
+# docs/design/*.png
+# Livent_UI*.jpg
+
+# --- Misc ---
+*.swp
+*~

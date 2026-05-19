@@ -1,0 +1,35 @@
+-- REFERENCIA — NO ejecutar en SQL Editor del dashboard
+-- (fallará con: must be owner of relation objects)
+--
+-- Estas políticas aplican si usas Supabase CLI: supabase db push / migraciones remotas.
+-- En proyecto hosted, créalas en Dashboard → Storage → posters → Policies
+-- (ver docs/supabase/STORAGE_SETUP.md)
+
+-- CREATE POLICY posters_public_read
+--     ON storage.objects FOR SELECT TO public
+--     USING (bucket_id = 'posters');
+--
+-- CREATE POLICY posters_insert_own_folder
+--     ON storage.objects FOR INSERT TO authenticated
+--     WITH CHECK (
+--         bucket_id = 'posters'
+--         AND (storage.foldername(name))[1] = auth.uid()::text
+--     );
+--
+-- CREATE POLICY posters_update_own_folder
+--     ON storage.objects FOR UPDATE TO authenticated
+--     USING (
+--         bucket_id = 'posters'
+--         AND (storage.foldername(name))[1] = auth.uid()::text
+--     )
+--     WITH CHECK (
+--         bucket_id = 'posters'
+--         AND (storage.foldername(name))[1] = auth.uid()::text
+--     );
+--
+-- CREATE POLICY posters_delete_own_folder
+--     ON storage.objects FOR DELETE TO authenticated
+--     USING (
+--         bucket_id = 'posters'
+--         AND (storage.foldername(name))[1] = auth.uid()::text
+--     );

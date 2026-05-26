@@ -84,6 +84,11 @@ supabase/
 # --- Supabase CLI (estado local) ---
 .supabase/
 
+# --- Mockups de diseño (solo local) ---
+Livent_UI*.jpg
+Livent_UI*.png
+Livent_UI*.jpeg
+
 # --- Misc ---
 *.swp
 *~

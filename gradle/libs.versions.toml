@@ -18,6 +18,7 @@ hiltNavigationCompose = "1.2.0"
 supabase = "3.0.2"
 ktor = "3.0.0"
 coil = "2.6.0"
+stripe = "21.12.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -54,6 +55,9 @@ ktor-client-android = { group = "io.ktor", name = "ktor-client-android", version
 ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
 
 coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
+
+stripe-android = { group = "com.stripe", name = "stripe-android", version.ref = "stripe" }
+supabase-functions = { group = "io.github.jan-tennert.supabase", name = "functions-kt", version.ref = "supabase" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

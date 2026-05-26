@@ -18,9 +18,13 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.RadioButton
-import androidx.compose.material3.Scaffold
+import androidx.compose.material3.OutlinedTextField
+import com.example.livent.presentation.components.LiventPrimaryButton
+import com.example.livent.presentation.components.LiventTopBar
+import com.example.livent.presentation.theme.LiventDimens
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
@@ -63,15 +67,11 @@ fun RegisterScreen(
         }
     }
 
-    Scaffold(
+    androidx.compose.material3.Scaffold(
         topBar = {
-            TopAppBar(
-                title = { Text("Registrarse") },
-                navigationIcon = {
-                    IconButton(onClick = onBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Atrás")
-                    }
-                },
+            LiventTopBar(
+                title = "Registrarse",
+                onNavigateBack = onBack
             )
         },
     ) { padding ->
@@ -79,8 +79,9 @@ fun RegisterScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding)
-                .padding(24.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp),
+                .padding(LiventDimens.PaddingLarge),
+            verticalArrangement = Arrangement.spacedBy(LiventDimens.PaddingMedium),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             OutlinedTextField(
                 value = email,
@@ -89,6 +90,11 @@ fun RegisterScreen(
                 modifier = Modifier.fillMaxWidth(),
                 singleLine = true,
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
+                shape = RoundedCornerShape(LiventDimens.CornerRadiusMedium),
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedBorderColor = MaterialTheme.colorScheme.primary,
+                    focusedLabelColor = MaterialTheme.colorScheme.primary
+                )
             )
             OutlinedTextField(
                 value = password,
@@ -98,6 +104,11 @@ fun RegisterScreen(
                 singleLine = true,
                 visualTransformation = PasswordVisualTransformation(),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+                shape = RoundedCornerShape(LiventDimens.CornerRadiusMedium),
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedBorderColor = MaterialTheme.colorScheme.primary,
+                    focusedLabelColor = MaterialTheme.colorScheme.primary
+                )
             )
             OutlinedTextField(
                 value = displayName,
@@ -105,46 +116,59 @@ fun RegisterScreen(
                 label = { Text("Nombre (opcional)") },
                 modifier = Modifier.fillMaxWidth(),
                 singleLine = true,
+                shape = RoundedCornerShape(LiventDimens.CornerRadiusMedium),
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedBorderColor = MaterialTheme.colorScheme.primary,
+                    focusedLabelColor = MaterialTheme.colorScheme.primary
+                )
             )
-            Text("Tipo de cuenta", style = MaterialTheme.typography.titleSmall)
-            RoleOption(
-                label = "Espectador",
-                selected = selectedRole == UserRole.USER,
-                onSelect = { selectedRole = UserRole.USER },
-            )
-            RoleOption(
-                label = "Publicador",
-                selected = selectedRole == UserRole.PUBLISHER,
-                onSelect = { selectedRole = UserRole.PUBLISHER },
-            )
+            
+            Column(modifier = Modifier.fillMaxWidth()) {
+                Text("Tipo de cuenta", style = MaterialTheme.typography.titleSmall)
+                RoleOption(
+                    label = "Espectador",
+                    selected = selectedRole == UserRole.USER,
+                    onSelect = { selectedRole = UserRole.USER },
+                )
+                RoleOption(
+                    label = "Publicador",
+                    selected = selectedRole == UserRole.PUBLISHER,
+                    onSelect = { selectedRole = UserRole.PUBLISHER },
+                )
+            }
+            
             uiState.errorMessage?.let { message ->
                 Text(
                     text = message,
                     color = MaterialTheme.colorScheme.error,
                     style = MaterialTheme.typography.bodySmall,
+                    modifier = Modifier.fillMaxWidth()
                 )
             }
-            Spacer(modifier = Modifier.height(8.dp))
-            Button(
-                onClick = {
-                    viewModel.signUp(
-                        email = email,
-                        password = password,
-                        role = selectedRole,
-                        displayName = displayName.takeIf { it.isNotBlank() },
-                    )
-                },
-                enabled = !uiState.isLoading && email.isNotBlank() && password.length >= 6,
-                modifier = Modifier.fillMaxWidth(),
-            ) {
-                if (uiState.isLoading) {
-                    CircularProgressIndicator()
-                } else {
-                    Text("Crear cuenta")
-                }
+            Spacer(modifier = Modifier.height(LiventDimens.PaddingSmall))
+            
+            if (uiState.isLoading) {
+                CircularProgressIndicator(color = MaterialTheme.colorScheme.primary)
+            } else {
+                LiventPrimaryButton(
+                    text = "Crear cuenta",
+                    onClick = {
+                        viewModel.signUp(
+                            email = email,
+                            password = password,
+                            role = selectedRole,
+                            displayName = displayName.takeIf { it.isNotBlank() },
+                        )
+                    },
+                    enabled = email.isNotBlank() && password.length >= 6
+                )
             }
+            
             TextButton(onClick = onNavigateToLogin) {
-                Text("¿Ya tienes cuenta? Inicia sesión")
+                Text(
+                    text = "¿Ya tienes cuenta? Inicia sesión",
+                    color = MaterialTheme.colorScheme.primary
+                )
             }
         }
     }

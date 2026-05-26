@@ -5,4 +5,5 @@ data class Profile(
     val role: UserRole,
     val displayName: String?,
     val email: String?,
+    val subscriptionTier: SubscriptionTier = SubscriptionTier.FREE,
 )

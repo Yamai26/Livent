@@ -20,11 +20,11 @@ Aplicación Android para descubrimiento y gestión de eventos locales. Proyecto 
 
 1. Clona el repositorio.
 2. Copia `local.properties.example` a `local.properties` (no se versiona).
-3. Rellena `sdk.dir`, `supabase.url` y `supabase.anon.key` (clave **anon public** del dashboard).
-4. Aplica migraciones y seed según `docs/supabase/SCHEMA.md`.
+3. Rellena `sdk.dir`, `supabase.url`, `supabase.anon.key` (clave **anon public**) y, para Fase 6, las claves Stripe Test en `local.properties` (ver `local.properties.example`).
+4. Configura el proyecto Supabase (migraciones, seed y Edge Functions) en tu instancia; el esquema y la documentación detallada se mantienen en local y no forman parte de este repositorio.
 5. Sincroniza Gradle y ejecuta en emulador o dispositivo.
 
-## Estructura del proyecto
+## Estructura del proyecto (repositorio público)
 
 ```text
 app/src/main/java/com/example/livent/
@@ -32,29 +32,17 @@ app/src/main/java/com/example/livent/
 ├── domain/        # Modelos, contratos, casos de uso
 ├── presentation/  # UI Compose, ViewModels, navegación
 └── di/            # Módulos Hilt
-
-supabase/migrations/   # Esquema SQL y RLS
-docs/                  # Documentación técnica
 ```
-
-## Documentación
-
-| Documento | Contenido |
-|-----------|-----------|
-| [docs/supabase/SCHEMA.md](docs/supabase/SCHEMA.md) | Esquema, RLS, seed |
-| [docs/supabase/STORAGE_SETUP.md](docs/supabase/STORAGE_SETUP.md) | Bucket `posters` |
-| [docs/fase3/AUTH_FLOW.md](docs/fase3/AUTH_FLOW.md) | Autenticación y sesión |
-| [plan2.md](plan2.md) | Arquitectura y fases del producto |
 
 ## Estado del desarrollo
 
 - [x] Fase 1 — Infraestructura Android
 - [x] Fase 2 — Base de datos Supabase
 - [x] Fase 3 — Autenticación y modo invitado
-- [ ] Fase 4 — Flujo Publisher (CRUD eventos)
-- [ ] Fase 5 — Feed y favoritos
-- [ ] Fase 6 — Monetización (Stripe Test)
-- [ ] Fase 7 — UI final (mockups de referencia)
+- [x] Fase 4 — Flujo Publisher (CRUD eventos)
+- [x] Fase 5 — Feed y favoritos
+- [x] Fase 6 — Monetización (Stripe Test)
+- [x] Fase 7 — UI final (mockups de referencia)
 
 ## Licencia
 

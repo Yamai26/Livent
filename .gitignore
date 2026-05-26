@@ -1,4 +1,4 @@
-# --- Android / Gradle (build & cachés; no subir) ---
+# --- Android / Gradle (build & cachés) ---
 *.iml
 .gradle/
 build/
@@ -23,6 +23,8 @@ google-services.json
 secrets.properties
 .env
 .env.*
+.env.local
+.env.*.local
 
 # --- IDE (Android Studio / IntelliJ) ---
 .idea/
@@ -32,12 +34,36 @@ secrets.properties
 *.iws
 out/
 
-# --- Cursor / agentes / notas internas de desarrollo ---
+# --- VS Code / editores (config local; no obligatorio en repo) ---
+.vscode/
+!.vscode/extensions.json
+
+# --- Cursor / Google Antigravity / otros asistentes de código ---
 .cursor/
-task.md
+.cursorrules
+.cursorignore
+.antigravity/
+.gemini/
+.aider*
+.continue/
+.windsurf/
+.copilot/
+AGENTS.md
+GEMINI.md
 **/agent-transcripts/
+**/.cursor/**
+**/.antigravity/**
+
+# Notas, planes y handoffs de desarrollo (suelen generarse con IA)
+task.md
+tasks.md
+plan1.md
+plan2.md
+**/plan*.md
 **/*handoff*.md
 **/*HANDOFF*.md
+**/PROMPTS.md
+**/prompts/
 
 # --- Sistema operativo ---
 .DS_Store
@@ -48,16 +74,17 @@ desktop.ini
 *.log
 *.hprof
 *.orig
+crashlytics-build.properties
+fabric.properties
 
-# --- Supabase CLI (si se usa en local) ---
+# --- Documentación y backend SQL (solo local / no público en GitHub) ---
+docs/
+supabase/
+
+# --- Supabase CLI (estado local) ---
 .supabase/
-
-# --- Mockups y assets pesados (opcional: quitar esta línea si quieres versionar diseño) ---
-# Descomenta si guardas JPG grandes en el repo y prefieres Git LFS o enlaces externos:
-# docs/design/*.jpg
-# docs/design/*.png
-# Livent_UI*.jpg
 
 # --- Misc ---
 *.swp
 *~
+*.bak

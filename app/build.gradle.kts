@@ -42,6 +42,21 @@ android {
             "SUPABASE_ANON_KEY",
             "\"${localProperties.getProperty("supabase.anon.key", "")}\"",
         )
+        buildConfigField(
+            "String",
+            "STRIPE_PUBLISHABLE_KEY",
+            "\"${localProperties.getProperty("stripe.publishable.key", "")}\"",
+        )
+        buildConfigField(
+            "String",
+            "STRIPE_PRICE_PREMIUM",
+            "\"${localProperties.getProperty("stripe.price.premium", "")}\"",
+        )
+        buildConfigField(
+            "String",
+            "STRIPE_PRICE_BOOST",
+            "\"${localProperties.getProperty("stripe.price.boost", "")}\"",
+        )
     }
 
     buildTypes {
@@ -99,6 +114,12 @@ dependencies {
 
     // Coil (image loading)
     implementation(libs.coil.compose)
+
+    // Stripe (Payment Sheet — publishers only)
+    implementation(libs.stripe.android)
+
+    // Supabase Edge Functions
+    implementation(libs.supabase.functions)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

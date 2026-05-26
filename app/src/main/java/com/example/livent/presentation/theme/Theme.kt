@@ -11,21 +11,37 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+    primary = LiventPrimaryDarkTheme,
+    onPrimary = LiventOnPrimary,
+    secondary = LiventSecondaryDark,
+    onSecondary = LiventOnBackgroundDark,
+    background = LiventBackgroundDark,
+    onBackground = LiventOnBackgroundDark,
+    surface = LiventSurfaceDark,
+    onSurface = LiventOnSurfaceDark,
+    onSurfaceVariant = LiventOnSurfaceDark,
+    outline = LiventOutline,
+    error = LiventError
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
+    primary = LiventPrimary,
+    onPrimary = LiventOnPrimary,
+    secondary = LiventSecondary,
+    onSecondary = LiventOnSecondary,
+    background = LiventBackground,
+    onBackground = LiventOnBackground,
+    surface = LiventSurface,
+    onSurface = LiventOnSurface,
+    onSurfaceVariant = LiventOnSurfaceVariant,
+    outline = LiventOutline,
+    error = LiventError
 )
 
 @Composable
 fun LiventTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    dynamicColor: Boolean = true,
+    dynamicColor: Boolean = false, // Desactivado por defecto para respetar la marca
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {
@@ -41,6 +57,7 @@ fun LiventTheme(
     MaterialTheme(
         colorScheme = colorScheme,
         typography = Typography,
+        shapes = Shapes,
         content = content
     )
 }
